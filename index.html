@@ -85,19 +85,43 @@
   </head>
   <body class="text-center">
     <main class="form-signin">
-    <form action="admin.html">
+    <form id="myForm" action="">
         <h1 class="h3 mb-3 fw-normal">Đăng nhập</h1>
         <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">Địa chỉ email</label>
+        <input type="username" class="form-control" id="name" placeholder="name@example.com">
+        <label for="floatingInput">Nhập username</label>
         </div>
         <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <input type="password" class="form-control" id="password" placeholder="Password">
         <label for="floatingPassword">Password</label>
         </div>
-        <button class="w-100 btn btn-lg btn-primary" onclick="checkValidate()" type="submit">Đăng nhập</button>
+        <button class="w-100 btn btn-lg btn-primary" onclick="checkValidate()">Đăng nhập</button>
     </form>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> 
   </body>
+  <script>
+    
+    function checkValidate() {
+      const account = [
+        {username: "admin", password: "123", role: 0},
+        {username: "hieu", password: "123", role: 1},
+        {username: "nam", password: "123456", role: 1}
+      ];
+      var username = document.getElementById("name").value;
+      var password = document.getElementById("password").value;
+      for(var i=0; i<account.length; i++) {
+        if(username === account[i].username && password === account[i].password){
+          if(account[i].role === 0) {
+            console.log("admin");
+            document.getElementById("myForm").action = "admin.html";
+          }
+          else if(account[i].role === 1) {
+            console.log("employee");
+            document.getElementById("myForm").action = "employee.html";
+          }
+        }
+      }
+    }
+  </script>
 </html>
